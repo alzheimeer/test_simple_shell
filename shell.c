@@ -1,19 +1,19 @@
 #include "shell.h"
 
-void execute(char dig[])
+void execute(char line2[])
 {
-	int commandSize = strlen(dig);
-	int cantPipes = countPipeOcurrence(dig);
-	int cantFluxCommand = countFluxOcurrence(dig);
-	char copy[commandSize];
-	_strcpy(copy, dig);
+	int lengthline2 = _strlen(line2);
+	int cantPipes = countPipeOcurrence(line2);
+	int cantFluxCommand = countFluxOcurrence(line2);
+	char copy[lengthline2];
+	_strcpy(copy, line2);
 
 	if (cantPipes == 0 && cantFluxCommand == 0)
 	{
 		int cantTokens = countBySpace(copy);
 		char *finalTokens[cantTokens + 1];
-		finalCommandTokens(finalTokens, dig);
-		executeBasicCommand(finalTokens, dig);
+		finalCommandTokens(finalTokens, line2);
+		executeBasicCommand(finalTokens, line2);
 	}
 	else if (cantPipes != 0 && cantFluxCommand == 0)
 	{
@@ -27,7 +27,7 @@ void execute(char dig[])
 		char *tokensFirstArray[sizeFirstArray + 1];
 		finalCommandTokens(tokensFirstArray, slicedCommand[0]);
 
-                //separar tokens del segundo subarreglo
+		//separar tokens del segundo subarreglo
 		char copy2[_strlen(slicedCommand[1])];
 		_strcpy(copy2, slicedCommand[1]);
 		int sizeSecondArray = countBySpace(copy2);
@@ -45,29 +45,29 @@ void execute(char dig[])
 	}
 }
 //cuenta si hay un pipe en el comando
-int countPipeOcurrence(char dig[])
+int countPipeOcurrence(char line2[])
 {
-	if (_strchr(dig, '|')!=NULL)
+	if (_strchr(line2, '|')!=NULL)
 	{
 		return 1;
 	}
 	return 0;
 }
 //cuenta si hay un '>' en el comando
-int countFluxOcurrence(char dig[])
+int countFluxOcurrence(char line2[])
 {
-	if (_strchr(dig, '>')!=NULL)
+	if (_strchr(line2, '>')!=NULL)
 	{
 		return 1;
 	}
 	return 0;
 }
 //llena cada posicion del arreglo finaltokens con cada token presente del comando
-void finalCommandTokens(char * finalTokens[], char dig[])
+void finalCommandTokens(char * finalTokens[], char line2[])
 {
 	char * puntero;
 	int i = 0;
-	puntero = strtok(dig, " ");
+	puntero = strtok(line2, " ");
 
 	while(puntero != NULL)
 	{
@@ -77,17 +77,17 @@ void finalCommandTokens(char * finalTokens[], char dig[])
 	}
 	finalTokens[i] = NULL;
 }
-void executeBasicCommand(char *tokens[], char dig[])
+void executeBasicCommand(char *tokens[], char line2[])
 {
 	execvp(tokens[0], tokens);
-	printf("%s: no se encontro la orden\n", dig);
+	printf("%s: no se encontro la orden\n", line2);
 }
 //separa el comando en dos subarreglos cuando encuentra el pipe o el '>'
-void split(char dig[], char *slicedCommand[], char c[])
+void split(char line2[], char *slicedCommand[], char c[])
 {
 	char * puntero;
 	int i = 0;
-	puntero = strtok(dig, c);
+	puntero = strtok(line2, c);
 
 	while (puntero != NULL)
 	{
@@ -132,9 +132,11 @@ void executeOutputFileCommand(char args[], char fileName[])
 	open(fileName, O_EXCL|O_CREAT|O_WRONLY, S_IRWXU);
 	execute(args);
 }
-int countBySpace(char dig[])
+int countBySpace(char line2[])
 {
-
-
-	return 1;
+	if (_strchr(line2, ' ')!=NULL)
+	{
+		return 1;
+	}
+	return 0;
 }
