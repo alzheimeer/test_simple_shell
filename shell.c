@@ -6,7 +6,7 @@ void execute(char dig[])
 	int cantPipes = countPipeOcurrence(dig);
 	int cantFluxCommand = countFluxOcurrence(dig);
 	char copy[commandSize];
-	strcpy(copy, dig);
+	_strcpy(copy, dig);
 
 	if (cantPipes == 0 && cantFluxCommand == 0)
 	{
@@ -21,15 +21,15 @@ void execute(char dig[])
 		split(copy, slicedCommand, "|");
 
 		//separar tokens del primer subarreglo
-		char copy1[strlen(slicedCommand[0])];
-		strcpy(copy1, slicedCommand[0]);
+		char copy1[_strlen(slicedCommand[0])];
+		_strcpy(copy1, slicedCommand[0]);
 		int sizeFirstArray = countBySpace(copy1);
 		char *tokensFirstArray[sizeFirstArray + 1];
 		finalCommandTokens(tokensFirstArray, slicedCommand[0]);
 
                 //separar tokens del segundo subarreglo
-		char copy2[strlen(slicedCommand[1])];
-		strcpy(copy2, slicedCommand[1]);
+		char copy2[_strlen(slicedCommand[1])];
+		_strcpy(copy2, slicedCommand[1]);
 		int sizeSecondArray = countBySpace(copy2);
 		char *tokensSecondArray[sizeSecondArray + 1];
 		finalCommandTokens(tokensSecondArray, slicedCommand[1]);
@@ -47,7 +47,7 @@ void execute(char dig[])
 //cuenta si hay un pipe en el comando
 int countPipeOcurrence(char dig[])
 {
-	if (strchr(dig, '|')!=NULL)
+	if (_strchr(dig, '|')!=NULL)
 	{
 		return 1;
 	}
@@ -56,7 +56,7 @@ int countPipeOcurrence(char dig[])
 //cuenta si hay un '>' en el comando
 int countFluxOcurrence(char dig[])
 {
-	if (strchr(dig, '>')!=NULL)
+	if (_strchr(dig, '>')!=NULL)
 	{
 		return 1;
 	}

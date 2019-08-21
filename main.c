@@ -7,8 +7,8 @@ int main(){
 	while (1)
 	{
 		printf("$ ");
-		scanf(" %99[\n]", dig);
-		if (!strcmp("exit", dig))
+		scanf(" %99[^\n]", dig);
+		if (!_strcmp("exit", dig))
 			break;
 		pid = fork();
 		if (!pid)
