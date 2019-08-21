@@ -126,9 +126,15 @@ void executeCommandWithPipes(char *args1[], char *args2[])
 	wait(NULL);
 }
 //Redirecciona la salida estandar a un archivo
-void executeOutFileCommand(char args[], fileName[])
+void executeOutputFileCommand(char args[], char fileName[])
 {
 	close(STDOUT_FILENO);
-	open(fileName, O_EXCL | O_CREAT | O_WRONLY, S_IRWXU);
+	open(fileName, O_EXCL|O_CREAT|O_WRONLY, S_IRWXU);
 	execute(args);
+}
+int countBySpace(char dig[])
+{
+
+
+	return 1;
 }
