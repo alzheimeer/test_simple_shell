@@ -24,12 +24,12 @@ char *_strcpy(char *dest, char *src);
 //void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 char *_strchr(char *s, char c);
 
-int countBySpace(char dig[]);
-int countPipeOcurrence(char dig[]);
-int countFluxOcurrence(char dig[]);
+int Space(char dig[]);
+int special$$(char dig[]);
+int comment(char dig[]);
 void split (char dig[], char *slicedCommand[], char c[]);
 void finalCommandTokens(char * finalTokens[], char dig[]);
-void executeBasicCommand(char *tokens[], char dig[]);
+void run(char *tokens[], char dig[]);
 void executeCommandWithPipes(char *args1[], char *args2[]);
 void executeOutputFileCommand(char args[], char fileName[]);
 void execute(char dig[]);
