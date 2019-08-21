@@ -39,32 +39,11 @@ void split(char line2[], char *slicedCommand[], char c[])
  */
 void runsemicolon(char *args1[], char *args2[])
 {
-	pid_t pid1, pid2;
-	int pipefd[2], status1, status2;
 
-	pipe(pipefd);
-	pid1 = fork();
 
-	if (pid1 == 0)
-	{
-		dup2(pipefd[1], STDOUT_FILENO);
-		close(pipefd[0]);
-		execvp(args1[0], args1);
-		printf("Command not found\n");
-	}
 
-	pid2 = fork();
 
-	if (pid2 == 0)
-	{
-		dup2(pipefd[0], STDIN_FILENO);
-		close(pipefd[1]);
-		execvp(args2[0], args2);
-		printf("Command not found\n");
-	}
-	close(pipefd[0]);
-	close(pipefd[1]);
-	wait(NULL);
+
 }
 /**
  * executeOutputFileCommand - re direction to file
@@ -74,9 +53,11 @@ void runsemicolon(char *args1[], char *args2[])
  */
 void executeOutputFileCommand(char args[], char fileName[])
 {
-	close(STDOUT_FILENO);
-	open(fileName, O_EXCL | O_CREAT | O_WRONLY, S_IRWXU);
-	execute(args);
+
+
+
+
+
 }
 /**
  * finalCommandTokens - tokens command with space
