@@ -1,13 +1,16 @@
 #include "shell.h"
-char *_cpy(char *dest, char *src);
+/**
+ * main - mini shell
+ * Return: Always 0.
+ */
 int main(){
-	char *line, *line2, l[100];
+	char *line, *line2, *l;
 	pid_t pid;
 
 	while (1)
 	{
 		write(1, "$ ", 2);
-		line = lsh_read_line();
+		line = readc();
 		line2 = _cpy(l,line);
 		if (!_strcmp("exit", line2))
 			break;
@@ -23,21 +26,4 @@ int main(){
 		}
 	}
 	return 0;
-}
-char *lsh_read_line(void)
-{
-	char *line = NULL;
-	ssize_t bufsize = 0;
-	getline(&line, &bufsize, stdin);
-	return line;
-}
-char *_cpy(char *dest, char *src)
-{
-	int i;
-
-	for (i = 0; *(src + i) != '\n'; i++)
-		dest[i] = src[i];
-
-	dest[i] = '\0';
-	return (dest);
 }

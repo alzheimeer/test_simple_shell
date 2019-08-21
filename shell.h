@@ -1,6 +1,9 @@
 #ifndef shell_l
 #define shell_l
 
+#include <limits.h>
+#include <signal.h>
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -11,6 +14,8 @@
 #include <fcntl.h>
 
 //int _putchar(char c);
+char *_cpy(char *dest, char *src);
+char *readc(void);
 int _strlen(char *s);
 int _strcmp(char *s1, char *s2);
 char *_strcpy(char *dest, char *src);
