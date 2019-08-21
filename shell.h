@@ -23,14 +23,15 @@ char *_strcpy(char *dest, char *src);
 //ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 //void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 char *_strchr(char *s, char c);
+void sigintHandler(int sig_num);
 
 int Space(char dig[]);
-int special$$(char dig[]);
+int semicolon(char dig[]);
 int comment(char dig[]);
 void split (char dig[], char *slicedCommand[], char c[]);
 void finalCommandTokens(char * finalTokens[], char dig[]);
 void run(char *tokens[], char dig[]);
-void executeCommandWithPipes(char *args1[], char *args2[]);
+void runsemicolon(char *args1[], char *args2[]);
 void executeOutputFileCommand(char args[], char fileName[]);
 void execute(char dig[]);
 
