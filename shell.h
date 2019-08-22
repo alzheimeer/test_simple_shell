@@ -13,6 +13,8 @@
 #include <stdint.h>
 #include <fcntl.h>
 
+extern char **environ;
+
 char *_cpy(char *dest, char *src);
 char *readc(void);
 int _strlen(char *s);

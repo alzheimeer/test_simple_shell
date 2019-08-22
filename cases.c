@@ -7,8 +7,8 @@
  */
 void run(char *tokens[], char line2[])
 {
-	execvp(tokens[0], tokens);
-	printf("%s: command not found\n", line2);
+	execve(tokens[0], tokens, NULL);
+	perror("command not found");
 }
 /**
  * split - separate the command into two sub-fixes when it finds
