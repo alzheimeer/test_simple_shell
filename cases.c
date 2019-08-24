@@ -8,7 +8,8 @@
 void run(char *tokens[], char line2[])
 {
 	execve(tokens[0], tokens, NULL);
-	perror("command not found");
+	write(1, line2, _strlen(line2));
+	write(2, ": not found\n", 12);
 }
 /**
  * split - separate the command into two sub-fixes when it finds
