@@ -1,0 +1,14 @@
+#include "shell.h"
+/**
+ * sigintHandler -  Signal Handler for SIGINT
+ * When Ctrl+C is pressed, SIGINT signal is generated,
+ * we can catch this signal and run our defined signal handler.
+ * @sig_num: Reset handler to catch SIGINT next time.
+ * Return: 0
+ */
+void sigintHandler(int sig_num)
+{
+	signal(SIGINT, sigintHandler);
+	write(1, "\n$ ", 2);
+	fflush(stdout);
+}

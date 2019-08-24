@@ -7,6 +7,8 @@ int main(void)
 {
 	char *line, *line2, *l;
 	pid_t pid;
+	int i = 1;
+	char *s = *environ;
 
 	signal(SIGINT, sigintHandler);
 	while (1)
@@ -14,6 +16,14 @@ int main(void)
 		write(1, "$ ", 2);
 		line = readc();
 		line2 = _cpy(l, line);
+		if (!_strcmp("env", line2))
+		{
+			for (; s; i++) {
+				printf("%s\n", s);
+				s = *(environ+i);
+			}
+			continue;
+		}
 		if (!_strcmp("exit", line2))
 			break;
 		pid = fork();
@@ -22,23 +32,15 @@ int main(void)
 			execute(line2);
 			break;
 		}
+		else if (pid < 0)
+		{
+			perror("fork");
+			exit(-1);
+		}
 		else
 		{
 			wait(NULL);
 		}
 	}
 	return (0);
-}
-/**
- * sigintHandler -  Signal Handler for SIGINT
- * When Ctrl+C is pressed, SIGINT signal is generated,
- * we can catch this signal and run our defined signal handler.
- * @sig_num: Reset handler to catch SIGINT next time.
- * Return: 0
- */
-void sigintHandler(int sig_num)
-{
-	signal(SIGINT, sigintHandler);
-	write(1, "\n$ ", 2);
-	fflush(stdout);
 }
