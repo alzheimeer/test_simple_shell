@@ -19,7 +19,8 @@ int main(void)
 		if (!_strcmp("env", line2))
 		{
 			for (; s; i++) {
-				printf("%s\n", s);
+				write(STDIN_FILENO, s, _strlen(s));
+				write(STDIN_FILENO, "\n", 1);
 				s = *(environ+i);
 			}
 			continue;
