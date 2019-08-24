@@ -10,6 +10,7 @@ int main(void)
 	int i = 1;
 	char *s = *environ;
 
+
 	signal(SIGINT, sigintHandler);
 	while (1)
 	{

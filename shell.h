@@ -22,12 +22,13 @@ int _strcmp(char *s1, char *s2);
 char *_strcpy(char *dest, char *src);
 char *_strchr(char *s, char c);
 void sigintHandler(int sig_num);
+int countSpace(char line2[]);
 
 int Space(char dig[]);
-int semicolon(char dig[]);
-int comment(char dig[]);
+int flaqs(char dig[]);
+//int comment(char dig[]);
 void split(char dig[], char *slicedCommand[], char c[]);
-void finalCommandTokens(char *finalTokens[], char dig[]);
+void splitSpace(char *argv[], char dig[]);
 void run(char *tokens[], char dig[]);
 void runsemicolon(char *args1[], char *args2[]);
 void executeOutputFileCommand(char args[], char fileName[]);

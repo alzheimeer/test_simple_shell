@@ -9,6 +9,6 @@
 void sigintHandler(int sig_num)
 {
 	signal(SIGINT, sigintHandler);
-	write(1, "\n$ ", 2);
+	write(STDOUT_FILENO, "\n$ ", 3);
 	fflush(stdout);
 }

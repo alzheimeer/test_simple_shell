@@ -66,7 +66,7 @@ void executeOutputFileCommand(char args[], char fileName[])
  * @line2: command
  * Return: 0
  */
-void finalCommandTokens(char *finalTokens[], char line2[])
+void splitSpace(char *argv[], char line2[])
 {
 	char *puntero;
 	int i = 0;
@@ -74,9 +74,9 @@ void finalCommandTokens(char *finalTokens[], char line2[])
 	puntero = strtok(line2, " ");
 	while (puntero != NULL)
 	{
-		finalTokens[i] = puntero;
+		argv[i] = puntero;
 		puntero = strtok(NULL, " ");
 		i++;
 	}
-	finalTokens[i] = NULL;
+	argv[i] = NULL;
 }
