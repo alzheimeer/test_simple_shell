@@ -12,10 +12,10 @@ void execute(char line2[])
 
 	flaqsc = flaqs(line2);
 	flaqspace = Space(line2);
-	x = (count(line2, ' ')) + 1;
 	_strcpy(copy, line2);
 	if (flaqsc == 0)
 	{
+		x = (count(line2, ' ')) + 1;
 		char *argv[x];
 
 		splitSpace(argv, line2);
@@ -23,26 +23,26 @@ void execute(char line2[])
 	}
 	else if (flaqsc == 1)
 	{
-		char *argv1[2];
+		char *ppp[2];
 
-		split(copy, argv1, ";");
-		char copy1[_strlen(argv1[0])];
+		split(copy, ppp, ";");
+		char ex1[_strlen(ppp[0])];
+		char ex2[_strlen(ppp[1])];
 
-		_strcpy(copy1, argv1[0]);
+		_strcpy(ex1, ppp[0]);
+		_strcpy(ex2, ppp[1]);
 
-		x = (count(copy1, ' ')) + 1;
-		sizeFirstArray = Space(copy1);
-		char *tokensFirstArray[sizeFirstArray + 1];
+		x = (count(ex1, ' ')) + 1;
+		char *argv1[x];
 
-		splitSpace(tokensFirstArray, argv[0]);
-		char copy2[_strlen(argv1[1])];
+		splitSpace(argv1, ex1);
+		run(argv1, ex1);
 
-		_strcpy(copy2, argv1[1]);
-		sizeSecondArray = Space(copy2);
-		char *tokensSecondArray[sizeSecondArray + 1];
+		x = (count(ex2, ' ')) + 1;
+		char *argv2[x];
 
-		splitSpace(tokensSecondArray, slicedCommand[1]);
-		runsemicolon(tokensFirstArray, tokensSecondArray);
+		splitSpace(argv2, ex2);
+		run(argv2, ex2);
 	}
 	else if (flaqsc == 2)
 	{
