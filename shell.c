@@ -12,33 +12,38 @@ void execute(char line2[])
 
 	flaqsc = flaqs(line2);
 	flaqspace = Space(line2);
-	x = (countSpace(line2)) + 1;
+	x = (count(line2, ' ')) + 1;
+	_strcpy(copy, line2);
 	if (flaqsc == 0)
 	{
 		char *argv[x];
 
 		splitSpace(argv, line2);
-		run(argv, line2); }
+		run(argv, line2);
+	}
 	else if (flaqsc == 1)
 	{
-		char *slicedCommand[2];
+		char *argv1[2];
 
-		split(copy, slicedCommand, ";");
-		char copy1[_strlen(slicedCommand[0])];
+		split(copy, argv1, ";");
+		char copy1[_strlen(argv1[0])];
 
-		_strcpy(copy1, slicedCommand[0]);
+		_strcpy(copy1, argv1[0]);
+
+		x = (count(copy1, ' ')) + 1;
 		sizeFirstArray = Space(copy1);
 		char *tokensFirstArray[sizeFirstArray + 1];
 
-		splitSpace(tokensFirstArray, slicedCommand[0]);
-		char copy2[_strlen(slicedCommand[1])];
+		splitSpace(tokensFirstArray, argv[0]);
+		char copy2[_strlen(argv1[1])];
 
-		_strcpy(copy2, slicedCommand[1]);
+		_strcpy(copy2, argv1[1]);
 		sizeSecondArray = Space(copy2);
 		char *tokensSecondArray[sizeSecondArray + 1];
 
 		splitSpace(tokensSecondArray, slicedCommand[1]);
-		runsemicolon(tokensFirstArray, tokensSecondArray); }
+		runsemicolon(tokensFirstArray, tokensSecondArray);
+	}
 	else if (flaqsc == 2)
 	{
 		char *slicedCommand[2];
@@ -52,13 +57,13 @@ void execute(char line2[])
  * @line2: command
  * Return: number of the space
  */
-int countSpace(char line2[])
+int count(char line2[], char c)
 {
 	int j = 0, k = 0;
 
 	while (line2[j])
 		{
-			if (line2[j] == ' ')
+			if (line2[j] == c)
 			{
 				k++;
 			}

@@ -12,27 +12,6 @@ void run(char *tokens[], char line2[])
 	write(2, ": not found\n", 12);
 }
 /**
- * split - separate the command into two sub-fixes when it finds
- * # or $
- * @line2: command
- * @slicedCommand: pointer array of 3 element
- * @c: separator
- * Return: 0
- */
-void split(char line2[], char *slicedCommand[], char c[])
-{
-	char *puntero;
-	int i = 0;
-
-	puntero = strtok(line2, c);
-	while (puntero != NULL)
-	{
-		slicedCommand[i] = puntero;
-		puntero = strtok(NULL, c);
-		i++;
-	}
-}
-/**
  * runsemicolon - manage two arg when found semicolon
  * @args1: first tok the command
  * @args2: second tok the command
@@ -60,12 +39,6 @@ void executeOutputFileCommand(char args[], char fileName[])
 
 
 }
-/**
- * finalCommandTokens - tokens command with space
- * @finalTokens: array 1 or 2
- * @line2: command
- * Return: 0
- */
 void splitSpace(char *argv[], char line2[])
 {
 	char *puntero;
@@ -79,4 +52,17 @@ void splitSpace(char *argv[], char line2[])
 		i++;
 	}
 	argv[i] = NULL;
+}
+void split(char line2[], char *slicedCommand[], char c[])
+{
+	char *puntero;
+	int i = 0;
+
+	puntero = strtok(line2, c);
+	while (puntero != NULL)
+	{
+		slicedCommand[i] = puntero;
+		puntero = strtok(NULL, c);
+		i++;
+	}
 }
