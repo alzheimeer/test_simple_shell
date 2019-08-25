@@ -9,7 +9,13 @@ void execute(char line2[])
 	int lengthline2 = _strlen(line2);
 	int x, flaqsc, flaqspace, sizeFirstArray, sizeSecondArray;
 	char copy[lengthline2];
+	char *cmd;
+	char *path;
+	char **dirs;
+	char **tokens;
 
+	path = get_path(environ);
+	dirs = split_path(path);
 	flaqsc = flaqs(line2);
 	flaqspace = Space(line2);
 	_strcpy(copy, line2);
@@ -19,10 +25,17 @@ void execute(char line2[])
 		char *argv[x];
 
 		splitSpace(argv, line2);
-		run(argv, line2);
+		cmd = search_path(dirs, argv[0]);
+		if (cmd == NULL)
+			printf("commanddsds not found: %s\n", argv[0]);
+		else
+			execve(cmd, argv, NULL);
+
+		//	run(argv, line2);
 	}
 	else if (flaqsc == 1)
 	{
+		runsemicolon(char copy[], char dirs[])
 		char *ppp[2];
 
 		split(copy, ppp, ";");
@@ -36,13 +49,25 @@ void execute(char line2[])
 		char *argv1[x];
 
 		splitSpace(argv1, ex1);
-		run(argv1, ex1);
+		cmd = search_path(dirs, argv1[0]);
+		if (cmd == NULL)
+			printf("commanddsds not found: %s\n", argv1[0]);
+		else
+			execve(cmd, argv1, NULL);
+
+		//run(argv1, ex1);
 
 		x = (count(ex2, ' ')) + 1;
 		char *argv2[x];
 
 		splitSpace(argv2, ex2);
-		run(argv2, ex2);
+		cmd = search_path(dirs, argv2[0]);
+		if (cmd == NULL)
+			printf("commanddsds not found: %s\n", argv2[0]);
+		else
+			execve(cmd, argv2, NULL);
+
+//		run(argv2, ex2);
 	}
 	else if (flaqsc == 2)
 	{
