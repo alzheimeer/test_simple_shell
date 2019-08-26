@@ -10,7 +10,6 @@ int main(void)
 	int i = 1;
 	char *s = *environ;
 
-
 	signal(SIGINT, sigintHandler);
 	while (1)
 	{
@@ -19,10 +18,11 @@ int main(void)
 		line2 = _cpy(l, line);
 		if (!_strcmp("env", line2))
 		{
-			for (; s; i++) {
+			for (; s; i++)
+			{
 				write(STDIN_FILENO, s, _strlen(s));
 				write(STDIN_FILENO, "\n", 1);
-				s = *(environ+i);
+				s = *(environ + i);
 			}
 			continue;
 		}
