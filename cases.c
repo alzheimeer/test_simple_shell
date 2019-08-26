@@ -12,15 +12,15 @@ void run(char *tokens[], char line2[])
 	write(2, ": not found\n", 12);
 }
 /**
- * runsemicolon - manage two arg when found semicolon
- * @args1: first tok the command
- * @args2: second tok the command
+ * runsemicolon - execute two command
+ * @copy: comand complete
+ * @dpath: directory path
  * Return: 0
  */
-void runsemicolon(char copy[], char *dirs[])
+void runsemicolon(char copy[], char *dpath[])
 {
 	int x;
-	char *cmd;
+	char *dpathcmd;
 	char *ppp[2];
 
 	split(copy, ppp, ";");
@@ -34,47 +34,36 @@ void runsemicolon(char copy[], char *dirs[])
 	char *argv1[x];
 
 	splitSpace(argv1, ex1);
-	cmd = search_path(dirs, argv1[0]);
-	if (cmd == NULL)
-		printf("commanddsds not found: %s\n", argv1[0]);
+	dpathcmd = checkPath(dpath, argv1[0]);
+	if (dpathcmd == NULL)
+		write(1, ": not found\n", 12);
 	else
-		execve(cmd, argv1, NULL);
-
-	//run(argv1, ex1);
+		execve(dpathcmd, argv1, NULL);
 
 	x = (count(ex2, ' ')) + 1;
 	char *argv2[x];
 
 	splitSpace(argv2, ex2);
-	cmd = search_path(dirs, argv2[0]);
-	if (cmd == NULL)
-		printf("commanddsds not found: %s\n", argv2[0]);
+	dpathcmd = checkPath(dpath, argv2[0]);
+	if (dpathcmd == NULL)
+		write(1, ": not found\n", 12);
 	else
-		execve(cmd, argv2, NULL);
+		execve(dpathcmd, argv2, NULL);
 
-	//run(argv2, ex2);
 }
 /**
- * executeOutputFileCommand - re direction to file
- * @args: token
- * @fileName: name of file
+ * splitSpace - cut each space
+ * @argv: array save cut
+ * @line2: name of filecommand complete
  * Return: 0
  */
-void executeOutputFileCommand(char args[], char fileName[])
-{
-
-
-
-
-
-}
 void splitSpace(char *argv[], char line2[])
 {
 	char *puntero;
 	int i = 0;
 
 	puntero = strtok(line2, " ");
-	while (puntero != NULL)
+	while (puntero)
 	{
 		argv[i] = puntero;
 		puntero = strtok(NULL, " ");
@@ -82,13 +71,20 @@ void splitSpace(char *argv[], char line2[])
 	}
 	argv[i] = NULL;
 }
+/**
+ * split - cut each delimiter
+ * @line2: command
+ * @slicedCommand: array save cut
+ * @c: delimiter
+ * Return: 0
+ */
 void split(char line2[], char *slicedCommand[], char c[])
 {
 	char *puntero;
 	int i = 0;
 
 	puntero = strtok(line2, c);
-	while (puntero != NULL)
+	while (puntero)
 	{
 		slicedCommand[i] = puntero;
 		puntero = strtok(NULL, c);

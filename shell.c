@@ -7,15 +7,14 @@
 void execute(char line2[])
 {
 	int lengthline2 = _strlen(line2);
-	int x, flaqsc, flaqspace, sizeFirstArray, sizeSecondArray;
+	int x, flaqsc, flaqspace;
 	char copy[lengthline2];
-	char *cmd;
 	char *path;
-	char **dirs;
-	char **tokens;
+	char **dpath;
+	char *dpathcmd;
 
-	path = get_path(environ);
-	dirs = split_path(path);
+	path = gpath();
+	dpath = splitPath(path);
 	flaqsc = flaqs(line2);
 	flaqspace = Space(line2);
 	_strcpy(copy, line2);
@@ -25,35 +24,32 @@ void execute(char line2[])
 		char *argv[x];
 
 		splitSpace(argv, line2);
-		cmd = search_path(dirs, argv[0]);
-		if (cmd == NULL)
-			printf("commanddsds not found: %s\n", argv[0]);
+		dpathcmd = checkPath(dpath, argv[0]);
+		if (dpathcmd == NULL)
+			write(1, ": not found\n", 12);
 		else
-			execve(cmd, argv, NULL);
-
-		//	run(argv, line2);
+			execve(dpathcmd, argv, NULL);
 	}
 	else if (flaqsc == 1)
 	{
-		runsemicolon(copy, dirs);
+		runsemicolon(copy, dpath);
 	}
 }
 /**
- * countSpace - count number of space in the command
+ * count - count number of delimiter in the command
  * @line2: command
- * Return: number of the space
+ * @c: delimiter
+ * Return: number of the delimiter
  */
 int count(char line2[], char c)
 {
 	int j = 0, k = 0;
 
 	while (line2[j])
-		{
-			if (line2[j] == c)
-			{
-				k++;
-			}
-			j++;
-		}
+	{
+		if (line2[j] == c)
+			k++;
+		j++;
+	}
 	return (k);
 }

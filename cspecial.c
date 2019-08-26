@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
- * semicolon - search ; in the command
+ * flaqs - search delimiters in the command
  * @line2: command
  * Return: 1 is found, else 0
  */
@@ -18,6 +18,11 @@ int flaqs(char line2[])
 		return (5);
 	return (0);
 }
+/**
+ * Space - search spaces in the command
+ * @line2: command
+ * Return: 1 is found, else 0
+ */
 int Space(char line2[])
 {
 	if (_strchr(line2, ' ') != NULL)

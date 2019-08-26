@@ -1,7 +1,7 @@
 #ifndef shell_l
 #define shell_l
+
 #define PATH_MAX 512
-#define TOKEN_MAX 64
 #include <limits.h>
 #include <signal.h>
 #include <errno.h>
@@ -31,13 +31,12 @@ int flaqs(char dig[]);
 void split(char line2[], char *slicedCommand[], char c[]);
 void splitSpace(char *argv[], char line2[]);
 void run(char *tokens[], char dig[]);
-void runsemicolon(char copy[], char *dirs[]);
-void executeOutputFileCommand(char args[], char fileName[]);
+void runsemicolon(char copy[], char *dpath[]);
 void execute(char dig[]);
 
-char *search_path(char **dirs, char *cmd);
-char *get_path(char **environ);
-char **split_path(char *path);
-char *catpath(char *dir, char *cmd);
+char *checkPath(char **dpath, char *argv0);
+char *gpath();
+char **splitPath(char *path);
+char *unePath(char *dpath, char *argv0);
 
 #endif
