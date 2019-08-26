@@ -30,7 +30,7 @@ int Space(char dig[]);
 int flaqs(char dig[]);
 void split(char line2[], char *slicedCommand[], char c[]);
 void splitSpace(char *argv[], char line2[]);
-void run(char *tokens[], char dig[]);
+void run(char line[], char *dpath[]);
 void runsemicolon(char copy[], char *dpath[]);
 void execute(char dig[]);
 

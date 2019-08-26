@@ -20,15 +20,7 @@ void execute(char line2[])
 	_strcpy(copy, line2);
 	if (flaqsc == 0)
 	{
-		x = (count(line2, ' ')) + 1;
-		char *argv[x];
-
-		splitSpace(argv, line2);
-		dpathcmd = checkPath(dpath, argv[0]);
-		if (dpathcmd == NULL)
-			write(1, ": not found\n", 12);
-		else
-			execve(dpathcmd, argv, NULL);
+		run(line2, dpath);
 	}
 	else if (flaqsc == 1)
 	{

@@ -1,15 +1,24 @@
 #include "shell.h"
 /**
  * run - execute command
- * @tokens: finaltokens[1]or[2]
  * @line2: command
+ * @dpath:directories the path
  * Return: 0
  */
-void run(char *tokens[], char line2[])
+void run(char line2[], char *dpath[])
 {
-	execve(tokens[0], tokens, NULL);
-	write(1, line2, _strlen(line2));
-	write(2, ": not found\n", 12);
+	int x;
+	char *dpathcmd;
+
+	x = (count(line2, ' ')) + 1;
+	char *argv[x];
+
+	splitSpace(argv, line2);
+	dpathcmd = checkPath(dpath, argv[0]);
+	if (dpathcmd == NULL)
+		write(1, ": not found\n", 12);
+	else
+		execve(dpathcmd, argv, NULL);
 }
 /**
  * runsemicolon - execute two command
