@@ -9,10 +9,13 @@ int main(void)
 	pid_t pid;
 	int i = 1;
 	char *s = *environ;
-
+	char grillo;
+	ssize_t bufsize = 0;
+		
 	signal(SIGINT, sigintHandler);
 	while (1)
 	{
+//		((grillo = getline(&line, &bufsize, stdin)) != EOF)
 		write(1, "$ ", 2);
 		line = readc();
 		line2 = _cpy(l, line);
@@ -29,6 +32,9 @@ int main(void)
 		if (!_strcmp("exit", line2))
 			break;
 		pid = fork();
+		free(line);
+		line = NULL;
+		bufsize = 0;
 		if (!pid)
 		{
 			execute(line2);
