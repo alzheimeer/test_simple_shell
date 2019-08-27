@@ -30,6 +30,10 @@ void execute(char line2[])
 	{
 		OO(copy, dpath);
 	}
+	else if (flaqsc == 4)
+	{
+		YY(copy, dpath);
+	}	
 }
 /**
  * count - count number of delimiter in the command

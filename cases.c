@@ -130,6 +130,64 @@ void OO(char copy[], char *dpath[])
 }
 
 /**
+ * YY - execute two command
+ * @copy: comand complete
+ * @dpath: directory path
+ * Return: 0
+ */
+void YY(char copy[], char *dpath[])
+{
+	int x;
+	char *dpathcmd;
+	char *ppp[2];
+	pid_t pid2;
+
+	split(copy, ppp, "&");
+	char ex1[_strlen(ppp[0])];
+	char ex2[_strlen(ppp[1])];
+
+	_strcpy(ex1, ppp[0]);
+	_strcpy(ex2, ppp[1]);
+
+	x = (count(ex1, ' ')) + 1;
+	char *argv1[x];
+
+	splitSpace(argv1, ex1);
+	dpathcmd = checkPath(dpath, argv1[0]);
+	if (dpathcmd == NULL)
+	{
+		write(1, ": not found\n", 12);
+		return;
+	}
+	else
+	pid2 = fork();
+	if (!pid2)
+	{
+		execve(dpathcmd, argv1, NULL);
+	}
+	else if	(pid2 < 0)
+	{
+		perror("fork");
+		exit(-1);
+	}
+	else
+	{
+		wait(NULL);
+	}
+
+	x = (count(ex2, ' ')) + 1;
+	char *argv2[x];
+
+	splitSpace(argv2, ex2);
+	dpathcmd = checkPath(dpath, argv2[0]);
+	if (dpathcmd == NULL)
+		write(1, ": not found\n", 12);
+	else
+		execve(dpathcmd, argv2, NULL);
+
+}
+
+/**
  * splitSpace - cut each space
  * @argv: array save cut
  * @line2: name of filecommand complete
