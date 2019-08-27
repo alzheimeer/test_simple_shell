@@ -26,6 +26,10 @@ void execute(char line2[])
 	{
 		runsemicolon(copy, dpath);
 	}
+	else if (flaqsc == 3)
+	{
+		OO(copy, dpath);
+	}
 }
 /**
  * count - count number of delimiter in the command

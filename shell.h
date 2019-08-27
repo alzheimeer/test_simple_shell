@@ -33,6 +33,9 @@ void split(char line2[], char *slicedCommand[], char c[]);
 void splitSpace(char *argv[], char line2[]);
 void run(char line[], char *dpath[]);
 void runsemicolon(char copy[], char *dpath[]);
+void OO(char copy[], char *dpath[]);
+
+
 void execute(char dig[]);
 
 char *checkPath(char **dpath, char *argv0);

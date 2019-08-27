@@ -10,11 +10,11 @@ int flaqs(char line2[])
 		return (1);
 	else if (_strchr(line2, '#') != NULL)
 		return (2);
-	else if (_strchr(line2, '$') != NULL)
+	else if (_strchr(line2, '|') != NULL)
 		return (3);
 	else if (_strchr(line2, '&') != NULL)
 		return (4);
-	else if (_strchr(line2, '|') != NULL)
+	else if (_strchr(line2, '$') != NULL)
 		return (5);
 	return (0);
 }
