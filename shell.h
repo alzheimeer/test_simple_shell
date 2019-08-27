@@ -23,6 +23,7 @@ int _strlen(char *s);
 int _strcmp(char *s1, char *s2);
 char *_strcpy(char *dest, char *src);
 char *_strchr(char *s, char c);
+char *_strcat(char *dest, char *src);
 void sigintHandler(int sig_num);
 int count(char line2[], char c);
 
@@ -38,5 +39,15 @@ char *checkPath(char **dpath, char *argv0);
 char *gpath();
 char **splitPath(char *path);
 char *unePath(char *dpath, char *argv0);
+
+void errors(int cont, char *var, char *com);
+char *_itoa(int n);
+int _atoi(char *s);
+void *_calloc(unsigned int nmemb, unsigned int size);
+char **split_command(char *line);
+char *comments(char *line);
+int _isdigit(int c);
+ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
+int execute_command(char **args, char *p, int cont);
 
 #endif
