@@ -40,6 +40,9 @@ char *gpath();
 char **splitPath(char *path);
 char *unePath(char *dpath, char *argv0);
 
+void _env(void);
+int salir(char *line, char **com, int cont);
+
 void errors(int cont, char *var, char *com);
 char *_itoa(int n);
 int _atoi(char *s);
