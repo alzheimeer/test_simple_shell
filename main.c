@@ -5,36 +5,33 @@
  */
 int main(void)
 {
-	char *line, *line2, *l;
+	char *line, *line2;
 	pid_t pid;
-	int i = 1;
-	char *s = *environ;
-	char grillo;
-	ssize_t bufsize = 0;
-		
+	int e, cont = 0;
+
 	signal(SIGINT, sigintHandler);
 	while (1)
 	{
-//		((grillo = getline(&line, &bufsize, stdin)) != EOF)
-		write(1, "$ ", 2);
+		cont ++;
+		write(STDIN_FILENO, "$ ", 2);
 		line = readc();
-		line2 = _cpy(l, line);
+		line2 = _cpy(line2, line);
+		if(line[0] == '\n')
+			continue;
+		line = comments(line);
+		
 		if (!_strcmp("env", line2))
 		{
-			for (; s; i++)
-			{
-				write(STDIN_FILENO, s, _strlen(s));
-				write(STDIN_FILENO, "\n", 1);
-				s = *(environ + i);
-			}
+			_env();
 			continue;
 		}
 		if (!_strcmp("exit", line2))
-			break;
+		{
+			e = salir(line2, cont);
+			if (e == -1)
+			continue;
+		}
 		pid = fork();
-		free(line);
-		line = NULL;
-		bufsize = 0;
 		if (!pid)
 		{
 			execute(line2);
@@ -49,6 +46,7 @@ int main(void)
 		{
 			wait(NULL);
 		}
+		free(line);
 	}
 	return (0);
 }

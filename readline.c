@@ -6,7 +6,8 @@
 char *readc(void)
 {
 	char *line = NULL;
-	ssize_t bufsize = 0, i;
+	size_t bufsize = 0;
+	int i;
 
 	i = getline(&line, &bufsize, stdin);
 	if (i == -1)

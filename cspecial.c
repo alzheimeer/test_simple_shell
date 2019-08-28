@@ -19,11 +19,11 @@ int flaqs(char line2[])
 	return (0);
 }
 /**
- * Space - search spaces in the command
+ * space - search spaces in the command
  * @line2: command
  * Return: 1 is found, else 0
  */
-int Space(char line2[])
+int space(char line2[])
 {
 	if (_strchr(line2, ' ') != NULL)
 	{

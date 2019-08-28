@@ -7,16 +7,14 @@
 void execute(char line2[])
 {
 	int lengthline2 = _strlen(line2);
-	int x, flaqsc, flaqspace;
+	int flaqsc;
 	char copy[lengthline2];
 	char *path;
 	char **dpath;
-	char *dpathcmd;
 
 	path = gpath();
 	dpath = splitPath(path);
 	flaqsc = flaqs(line2);
-	flaqspace = Space(line2);
 	_strcpy(copy, line2);
 	if (flaqsc == 0)
 	{

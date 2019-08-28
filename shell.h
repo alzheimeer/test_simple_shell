@@ -24,10 +24,10 @@ int _strcmp(char *s1, char *s2);
 char *_strcpy(char *dest, char *src);
 char *_strchr(char *s, char c);
 char *_strcat(char *dest, char *src);
-void sigintHandler(int sig_num);
+void sigintHandler();
 int count(char line2[], char c);
 
-int Space(char dig[]);
+int space(char dig[]);
 int flaqs(char dig[]);
 void split(char line2[], char *slicedCommand[], char c[]);
 void splitSpace(char *argv[], char line2[]);
@@ -46,7 +46,7 @@ char **splitPath(char *path);
 char *unePath(char *dpath, char *argv0);
 
 void _env(void);
-int salir(char *line, char **com, int cont);
+int salir(char *line, int cont);
 
 void errors(int cont, char *var, char *com);
 char *_itoa(int n);
